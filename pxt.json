@@ -1,7 +1,7 @@
 {
   "name": "pxt-robotpu",
-  "version": "2.0.0",
-  "description": "Robot PU MakeCode extension exposing movement, sensors, lights, remote control, and text messaging.",
+  "version": "1.0.0",
+  "description": "Robot PU MakeCode extension exposing walk, autopilot, dance, kick, jump, rest, talk, sing.",
   "license": "MIT",
   "dependencies": {
     "core": "*",

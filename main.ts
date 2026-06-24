@@ -49,7 +49,7 @@ namespace robotPu {
     }
 
     export enum Action {
-        //% block="greet"
+        //% block="wave"
         Greet,
         //% block="rest"
         Rest,
@@ -64,17 +64,17 @@ namespace robotPu {
     }
 
     export enum MoveDirection {
-        //% block="forward"
+        //% block="forwards"
         Forward,
-        //% block="backward"
+        //% block="backwards"
         Backward,
-        //% block="side left"
+        //% block="step left"
         SideLeft,
-        //% block="side right"
+        //% block="step right"
         SideRight,
-        //% block="left turn"
+        //% block="turn left"
         LeftTurn,
-        //% block="right turn"
+        //% block="turn right"
         RightTurn
     }
 
@@ -96,9 +96,9 @@ namespace robotPu {
         RightFoot,
         //% block="right leg"
         RightLeg,
-        //% block="head offset"
+        //% block="head turn"
         HeadOffset,
-        //% block="head pitch"
+        //% block="head nod"
         HeadPitch
     }
     /**
@@ -110,6 +110,7 @@ namespace robotPu {
     //% help=github:pxt-PU-Robot/docs/setup
     //% leftFoot.defl=0 leftLeg.defl=0 rightFoot.defl=0 rightLeg.defl=0 headYaw.defl=0 headPitch.defl=0
     //% weight=80 blockGap=8
+    //% blockHidden=true
     export function setServoTrim(leftFoot: number, leftLeg: number, rightFoot: number, rightLeg: number, headYaw: number, headPitch: number): void {
         ensureRobot().setTrim(leftFoot, leftLeg, rightFoot, rightLeg, headYaw, headPitch);
     }
@@ -123,6 +124,7 @@ namespace robotPu {
     //% forward.min=0 forward.max=4 forward.defl=2
     //% backward.min=0 backward.max=3 backward.defl=2
     //% weight=79 blockGap=8
+    //% blockHidden=true
     export function setWalkSpeedRange(forward: number, backward: number): void {
         const robot = ensureRobot();
         robot.setFwdMaxSpeed(forward);
@@ -133,7 +135,7 @@ namespace robotPu {
      * Get ultrasonic sensor distance. Returns the distance detected by the ultrasonic sensor, units can be selected as centimeters or inches.
      */
     //% group="Sensors"
-    //% block="ultrasonic sensor distance in %unit"
+    //% block="how far away in %unit"
     //% help=github:pxt-PU-Robot/docs/sensors
     //% weight=70 blockGap=8
     export function ultrasonicDistance(unit: DistanceUnit): number {
@@ -152,7 +154,7 @@ namespace robotPu {
      * Get body roll. Returns the current roll angle of the robot body.
      */
     //% group="Sensors"
-    //% block="body roll"
+    //% block="tilt sideways"
     //% help=github:pxt-PU-Robot/docs/sensors
     //% weight=69 blockGap=8
     export function bodyRoll(): number {
@@ -163,7 +165,7 @@ namespace robotPu {
      * Get body pitch. Returns the current pitch angle of the robot body.
      */
     //% group="Sensors"
-    //% block="body pitch"
+    //% block="tilt forwards"
     //% help=github:pxt-PU-Robot/docs/sensors
     //% weight=68 blockGap=8
     export function bodyPitch(): number {
@@ -174,7 +176,7 @@ namespace robotPu {
      * Get music tempo. Returns the current music tempo in beats per minute (BPM).
      */
     //% group="Sensors"
-    //% block="music tempo"
+    //% block="music speed"
     //% help=github:pxt-PU-Robot/docs/sensors
     //% weight=67 blockGap=8
     export function musicTempo(): number {
@@ -188,6 +190,7 @@ namespace robotPu {
     //% block="front distance array"
     //% help=github:pxt-PU-Robot/docs/sensors
     //% weight=66 blockGap=8
+    //% blockHidden=true
     export function frontDistanceArray(): number[] {
         const d = ensureRobot().pr.exploreDistance;
         return [d[0], d[1], (d[1]+d[2])*0.5, d[2], d[3]];
@@ -197,7 +200,7 @@ namespace robotPu {
      * Set ambience light. Set the selected ambience light to the specified RGB color.
      */
     //% group="Actuators"
-    //% block="set ambience light %light to RGB (%r, %g, %b)"
+    //% block="set light %light to colour: red %r green %g blue %b"
     //% help=github:pxt-PU-Robot/docs/actuators
     //% r.min=0 r.max=255 r.defl=255
     //% g.min=0 g.max=255 g.defl=255
@@ -241,7 +244,7 @@ namespace robotPu {
      * Set left/right eye state. Turn the left and right eyes on or off.
      */
     //% group="Actuators"
-    //% block="set left eye %leftEye right eye %rightEye"
+    //% block="turn left eye %leftEye right eye %rightEye"
     //% help=github:pxt-PU-Robot/docs/actuators
     //% leftEye.defl=EyeState.On rightEye.defl=EyeState.On
     //% weight=64 blockGap=8
@@ -264,7 +267,7 @@ namespace robotPu {
      * Set left eye brightness. Adjust the brightness of the left eye light.
      */
     //% group="Actuators"
-    //% block="set left eye brightness %brightness"
+    //% block="left eye brightness %brightness"
     //% help=github:pxt-PU-Robot/docs/actuators
     //% brightness.min=0 brightness.max=100 brightness.defl=50
     //% weight=63 blockGap=8
@@ -284,7 +287,7 @@ namespace robotPu {
      * Set right eye brightness. Adjust the brightness of the right eye light.
      */
     //% group="Actuators"
-    //% block="set right eye brightness %brightness"
+    //% block="right eye brightness %brightness"
     //% help=github:pxt-PU-Robot/docs/actuators
     //% brightness.min=0 brightness.max=100 brightness.defl=50
     //% weight=62 blockGap=8
@@ -304,7 +307,7 @@ namespace robotPu {
      * Execute action. Perform one of the robot's built-in non-speech actions.
      */
     //% group="Actions"
-    //% block="set mode %action"
+    //% block="do %action"
     //% help=github:pxt-PU-Robot/docs/actions
     //% weight=55 blockGap=8
     export function executeAction(action: Action): void {
@@ -317,7 +320,7 @@ namespace robotPu {
      * Exit loop - stop timed execution.
      */
     //% group="Actions"
-    //% block="stop action"
+    //% block="stop"
     //% help=github:pxt-PU-Robot/docs/actions
     //% weight=51 blockGap=8
     export function exitLoop(): void {
@@ -329,7 +332,7 @@ namespace robotPu {
      * Set robot move direction. Set the movement direction of the PU robot.
      */
     //% group="Actions"
-    //% block="set robot move direction %direction"
+    //% block="go %direction"
     //% help=github:pxt-PU-Robot/docs/actions
     //% weight=54 blockGap=8
     export function setMoveDirection(direction: MoveDirection): void {
@@ -424,7 +427,7 @@ namespace robotPu {
      * Set servo angle. Directly rotate the specified servo to the target angle.
      */
     //% group="Actions"
-    //% block="set %joint servo to %angle"
+    //% block="move %joint to %angle"
     //% help=github:pxt-PU-Robot/docs/actions
     //% angle.min=0 angle.max=180 angle.defl=90
     //% weight=65 blockGap=8
@@ -447,7 +450,7 @@ namespace robotPu {
      * Smooth set servo angle. Smoothly rotate the specified servo to the target angle with the specified step length.
      */
     //% group="Actions"
-    //% block="smooth move %joint servo to %angle with step %step"
+    //% block="slowly move %joint to %angle in steps of %step"
     //% help=github:pxt-PU-Robot/docs/actions
     //% angle.min=0 angle.max=180 angle.defl=90
     //% step.min=1 step.max=20 step.defl=2
@@ -505,7 +508,7 @@ namespace robotPu {
      * Set controller radio group. Set the radio channel for the controller (0-255).
      */
     //% group="Controller"
-    //% block="set controller radio group %group"
+    //% block="set remote channel %group"
     //% help=github:pxt-PU-Robot/docs/controller
     //% group.min=0 group.max=255 group.defl=160
     //% weight=40 blockGap=8
@@ -527,7 +530,7 @@ namespace robotPu {
      * Read joystick value. Read the joystick value for the specified axis (-1 to 1).
      */
     //% group="Controller"
-    //% block="read joystick value %axis"
+    //% block="joystick %axis"
     //% help=github:pxt-PU-Robot/docs/controller
     //% weight=39 blockGap=8
     export function readJoystickValue(axis: JoystickAxis): number {
@@ -542,7 +545,7 @@ namespace robotPu {
      * Initialize controller buttons. Set up the pull-up resistors for all controller buttons.
      */
     //% group="Controller"
-    //% block="initialize controller buttons"
+    //% block="get buttons ready"
     //% help=github:pxt-PU-Robot/docs/controller
     //% weight=38 blockGap=8
     export function initControllerButtons(): void {
@@ -602,9 +605,9 @@ namespace robotPu {
         Turn,
         //% block="speed"
         Speed,
-        //% block="pitch"
+        //% block="tilt forwards"
         Pitch,
-        //% block="roll"
+        //% block="tilt sideways"
         Roll,
         //% block="button"
         Button
@@ -614,7 +617,7 @@ namespace robotPu {
      * Send control value. Send a control value to the robot.
      */
     //% group="Controller"
-    //% block="send %type value %value"
+    //% block="send %type %value"
     //% help=github:pxt-PU-Robot/docs/controller
     //% value.min=-1 value.max=1 value.defl=0
     //% weight=36 blockGap=8
@@ -642,7 +645,7 @@ namespace robotPu {
      * Send text message. Send a text message to the robot.
      */
     //% group="Controller"
-    //% block="send text message %text"
+    //% block="send message %text"
     //% help=github:pxt-PU-Robot/docs/controller
     //% text.shadow=text
     //% weight=35 blockGap=8
@@ -671,7 +674,7 @@ namespace robotPu {
      */
     //% group="Receiver"
     //% subcategory="Remote Control"
-    //% block="enable remote control on group %group"
+    //% block="turn on remote, channel %group"
     //% help=github:pxt-PU-Robot/docs/receiver
     //% group.min=0 group.max=255 group.defl=160
     //% weight=30 blockGap=8
@@ -729,7 +732,7 @@ namespace robotPu {
      */
     //% group="Receiver"
     //% subcategory="Remote Control"
-    //% block="disable remote control"
+    //% block="turn off remote"
     //% help=github:pxt-PU-Robot/docs/receiver
     //% weight=29 blockGap=8
     export function disableRemoteControl(): void {
@@ -747,9 +750,9 @@ namespace robotPu {
         Button,
         //% block="text"
         Text,
-        //% block="pitch"
+        //% block="tilt forwards"
         Pitch,
-        //% block="roll"
+        //% block="tilt sideways"
         Roll
     }
 
@@ -758,7 +761,7 @@ namespace robotPu {
      */
     //% group="Receiver"
     //% subcategory="Remote Control"
-    //% block="on %type value received"
+    //% block="when I get %type"
     //% help=github:pxt-PU-Robot/docs/receiver
     //% weight=28 blockGap=8
     export function onControlValueReceived(type: ControlValueType, handler: (value: any) => void): void {
@@ -789,7 +792,7 @@ namespace robotPu {
      */
     //% group="Receiver"
     //% subcategory="Remote Control"
-    //% block="current %type value"
+    //% block="latest %type"
     //% help=github:pxt-PU-Robot/docs/receiver
     //% weight=27 blockGap=8
     export function getControlValue(type: ControlValueType): any {
